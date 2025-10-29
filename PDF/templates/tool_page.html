@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="tool-page">
+  <h2>{{ title }}</h2>
+  <p>{{ description }}</p>
+  <form action="/convert" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="tool" value="{{ tool }}">
+    <input type="file" name="files" multiple required>
+    <button type="submit">Convert</button>
+  </form>
+</div>
+{% endblock %}

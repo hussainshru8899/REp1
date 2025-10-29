@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="hero">
+  <h2>All-in-one File Converter</h2>
+  <p>Convert PDF, Excel, Images, PPT and more — OCR and batch supported.</p>
+</div>
+
+<section id="tools" class="tools-grid">
+  <div class="card">
+    <h3>PDF → Excel</h3>
+    <form action="/convert" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="tool" value="pdf_to_excel">
+      <input type="file" name="files" accept=".pdf" multiple required>
+      <button type="submit">Convert</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Excel → PDF</h3>
+    <form action="/convert" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="tool" value="excel_to_pdf">
+      <input type="file" name="files" accept=".xls,.xlsx" multiple required>
+      <button type="submit">Convert</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Image → Excel (OCR)</h3>
+    <form action="/convert" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="tool" value="jpg_to_excel">
+      <input type="file" name="files" accept=".png,.jpg,.jpeg" multiple required>
+      <button type="submit">Convert</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Image Format (PNG ⇄ JPG)</h3>
+    <form action="/convert" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="tool" value="img_convert">
+      <input type="file" name="files" accept=".png,.jpg,.jpeg" multiple required>
+      <button type="submit">Convert</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>XLSX → PPTX</h3>
+    <form action="/convert" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="tool" value="xlsx_to_pptx">
+      <input type="file" name="files" accept=".xlsx" multiple required>
+      <button type="submit">Convert</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>PPTX → XLSX</h3>
+    <form action="/convert" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="tool" value="pptx_to_xlsx">
+      <input type="file" name="files" accept=".pptx" multiple required>
+      <button type="submit">Convert</button>
+    </form>
+  </div>
+
+</section>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %} <div class="toast">{{ messages[0] }}</div>
+{% endif %}
+{% endwith %}
+
+{% endblock %}
